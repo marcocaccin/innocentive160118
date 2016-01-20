@@ -7,8 +7,8 @@ from scipy import stats
 from matplotlib import pyplot as plt
 import seaborn
 
-train = pd.read_csv('train-yes.csv')
-y= np.load('y_train.npy')
+train = pd.read_csv('data/train-yes.csv')
+y= np.load('data/y_train.csv')
 clf = xgb.XGBClassifier(n_estimators=50,
                         nthread=-1,
                         max_depth=12,
