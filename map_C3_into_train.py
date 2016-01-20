@@ -6,26 +6,15 @@ import sklearn.cross_validation as cv
 
 ##### Load data ######
 
-train = pd.read_csv('train.csv').drop('record_ID', axis=1)
-test = pd.read_csv('test.csv').drop('record_ID', axis=1)
-y = train.target_purchase.values
-train.drop('target_purchase', inplace=True, axis=1)
-test.fillna(-1, inplace=True)
+train = pd.read_csv('data/train-yes.csv')
+test = pd.read_csv('data/test-yes.csv')
+y = np.loadtxt('data/y_train.csv')
 
 ##### Convert C3 variable ######
 C3 = train.C3.values.copy()
 le = preprocessing.LabelEncoder()
 C3t = le.fit_transform(np.atleast_2d(C3).T)
 train.drop('C3', axis=1, inplace=True)
-
-##### Convert categorical variables into numerical (label encode) ######
-total = pd.concat([train, test])
-categorical_features = ['C3']
-for feat in total.columns:
-    if total[feat].dtype=='object':
-        total[feat] = le.fit_transform(list(total[feat].values))
-        categorical_features.append(feat)
-train = total[:ntrain]; test  = total[ntrain:]; total = None
 
 ##### Train a model for prediction of C3 given all other features ######
 X_teach, X_valid, c3_teach, c3_valid = cv.train_test_split(np.array(train), C3t, test_size=0.3, random_state=0)
