@@ -10,9 +10,9 @@ import xgboost as xgb
 
     ##### Load data ######
 
-    train = pd.read_csv('train-yes.csv')
-    test = pd.read_csv('test-yes.csv')
-    y = np.loadtxt('y-yes.csv').astype('int')
+    train = pd.read_csv('data/train-yes.csv')
+    test = pd.read_csv('data/test-yes.csv')
+    y = np.loadtxt('y_train.csv').astype('int')
     train['C3'] = np.loadtxt('train-C3-mapped.csv')
     test['C3'] = np.loadtxt('test-C3-mapped.csv')
 
