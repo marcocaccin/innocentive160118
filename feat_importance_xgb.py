@@ -3,8 +3,8 @@ import pandas as pd
 import xgboost as xgb
 import operator
 
-train = pd.read_csv('train-yes.csv')
-y = np.loadtxt('y-yes.csv', dtype='int')
+train = pd.read_csv('data/train-yes.csv')
+y = np.loadtxt('y_train.csv', dtype='int')
 
 params = {
         "max_depth"             : 8,
